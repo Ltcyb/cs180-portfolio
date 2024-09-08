@@ -5,6 +5,8 @@ date: "2024.9.9"
 
 # proj1: prokudin-gorskii
 
+Arnold Cai, Fall 2024
+
 ## task 1: naive search
 I first implemented a naive version of that will align the bgr channels by going through a set range of deltas and then finding then finding the best set of deltas amonst the channels to align with. More specifically, I would align the red and green channels with respect to blue. My initial delta range was `[-15, 15]`, and I would use two nested for loops to go through all possible ranges of `dx` and `dy`. In order to determine whether or not if a certain alignment of g/r to b was the best alignment, I initially used the `L2 norm squared` as a loss function, and the "best" metric was calculated by *minimizing* the loss. However after some testing, I found that the `L2 norm squared` was not a suitable metric. Therefore, I swtiched to using `Normalized Cross-Correlation (NCC)` as the comparison metric, which I found to be more promising. However, note that `NCC` is not a loss function but rather a scoring metric that scores the correlation between two vectors, and therefore was a *maximization* problem.
 
