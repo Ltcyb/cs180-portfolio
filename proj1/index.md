@@ -10,12 +10,16 @@ I first implemented a naive version of that will align the bgr channels by going
 
 #### optimization
 Another slight optimization I implemented was to only compute `np.roll()` on the input image with respect to `dx` in the outside for loop and then doing `np.roll()` on the resulting dx rolled image with respect to `dy`. That way there will be less computations made.
+
 ```{python}
 for dx:
     #roll dx
     for dy:
         #roll dy
 ```
+
+#### caveats
+When I initially implemented this naive search, `cathedaral.jpg` and `tobolsk.jpg` worked fine. However, `monastery.jpg` would have a weird offset between the bgr channels, making the image look like one of those 3d image without looking at them thorugh 3d glasses. I figured that the white/black borders might have affected the NCC metric and therefore resulted in this offsetted result especially since the middle channel doesn't have a top and bottom white border like the other channels. Therefore, I tried cropping the *original* images by `2.5%` on all sides before running naive search. This worked in fixing the offsets in between bgr channels in `monastery.jpg`.
 
 <div align="middle">
 <table>
@@ -53,9 +57,9 @@ The images are all scanned differently, and therefore all have different white/b
 
 Initially, I tried using a white mask and diff the white mask with the image in order to eliminate the borders. It was pretty impressive and did get rid of the borders. However, a problem arose where the cropped images of the bgr channels were all in different dimensions and was hard to manipulate afterwards to the mismatch in dimensions.
 
-Therefore, I ended up switching to using generalized percentage cropping. I cropped the *initial* image (when it still contains 3 images) by `` of its height and `` of its width on each side. This is due to the borders only being from the initial image. If I cropped each individual image after dividing the initial image into 3 pieces, I would get weird crops since the middle channel image wouldn't have white/black borders on the top and bottom.
+Therefore, I ended up switching to using generalized percentage cropping. I cropped the *initial* image (when it still contains 3 images) by `2%` of its height and `5%` of its width on each side. This is due to the borders only being from the initial image. If I cropped each individual image after dividing the initial image into 3 pieces, I would get weird crops since the middle channel image wouldn't have white/black borders on the top and bottom.
 
-However, this set of crop dimension didn't work for `emir.tif` and `lady.tif`. After some fine tuning, I found specific crop percentages for each image. For `emir.tif`, the crop dimensions were `` and ``. And for `lady.tif`, the crop dimensions were `` and ``.
+However, this set of crop dimension didn't work for `emir.tif` and `lady.tif`. After some fine tuning, I found specific crop percentages for each image. For `emir.tif`, the crop dimensions were `1.5%` of the height on both sides, `4%` of the left side and `2%` on the right side. And for `lady.tif`, the crop dimensions were `3%` of the height and `5%` of the width on each side.
 
 <div align="middle">
 <table>
