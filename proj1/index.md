@@ -1,3 +1,8 @@
+---
+author: "Arnold Cai"
+date: "2024.9.9"
+---
+
 # proj1: prokudin-gorskii
 
 ## task 1: naive search
