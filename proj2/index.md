@@ -625,7 +625,7 @@ please forigve me as i accidentally did 1 more layer than the paper itself.
             <p align="middle">gudetama</p>
         </td>
         <td>
-            <img src="../proj2/out/breakfast.jpg" width=200>
+            <img src="../proj2/out/breakfast.jpg" width=200>c
             <p align="middle">breakfast</p>
         </td>
         <td>
