@@ -99,11 +99,9 @@ Creating a morph sequence is similar to calculating the midway face but instead 
 
 To create this linear interpolation, I just used `np.linspace` to create 45 alphas that can be in between the range of `[0, 1]`, since I want to create 45 frames of in-between morph sequences. Each frame uses the same alpha for warping and cross-dissolving, which seems to work fine. However, I think a smoother transition can be done if the warp alpha was a function of dissolve alpha for some function `f`. This probably needs a bit more testing and research before much more can be said.
 
-<div align="middle">
-
 ![clooney-zuck-morph.gif](../proj3/out/clooney-zuck.gif)
 
-</div>
+> clooney-zuck-morph.gif
 
 
 ## task 4: "mean face" of population
@@ -114,13 +112,9 @@ To generate the mean face:
 2. Warp each img to the average triangular mask
 3. Compute the average RGB values of all the warped images
 
-<div align="middle">
-
 ![](../proj3/out/danes-mean-face.jpg)
 
-danes mean face
-
-</div>
+> danes mean face
 
 <div align="middle">
 <table>
