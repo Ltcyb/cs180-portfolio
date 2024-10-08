@@ -189,6 +189,52 @@ Caricatures of a face can be derived from this formula: `caricature = alpha * (a
 
 ## bells and whistles
 
+### gender swap
+I created a female Mark Zuckerberg photo by morphing the Zuckerberg photo to the [average Australian Women photo](https://www.yahoo.com/lifestyle/the-best-part-of-having-an-average-face-105364187302.html). To morph only shape, the warp alpha was set to `0.5` while the dissolve alpha was set to `0.0`. To morph only appearance, the warp alpha was set to `0.0` while the dissolve alpha was set to `0.5`. To morph everything together, the both warp and dissolve alphas were set to `0.5`.
+
+<div align="middle">
+<table>
+    <tr>
+        <td>
+            <img src="../proj3/out/zuck.jpg" width=300>
+            <p align="middle">zuck</p>
+        </td>
+        <td>
+            <img src="../proj3/out/resized-zuck-keypoints.png" width=300>
+            <p align="middle">avg Australian women keypoints</p>
+        </td>
+        <td>
+            <img src="../proj3/out/avg-female-keypoints.png" width=300>
+            <p align="middle">avg Australian women keypoints</p>
+        </td>
+        <td>
+            <img src="../proj3/out/avg-women.jpeg" width=300>
+            <p align="middle">avg Australian women face</p>
+        </td>
+    </tr>
+</table>
+</div>
+
+<div align="center">
+<table>
+    <tr>
+        <td>
+            <img src="../proj3/out/female-zuck-shape.jpg" width=300>
+            <p align="middle">warp=0.5, dissolve=0.0</p>
+        </td>
+       <td>
+            <img src="../proj3/out/female-zuck-appearance.jpg" width=300>
+            <p align="middle">warp=0.0, dissolve=0.5</p>
+        </td>
+        <td>
+            <img src="../proj3/out/female-zuck.jpg" width=300>
+            <p align="middle">warp=0.5, dissolve=0.5</p>
+        </td>
+    </tr>
+</table>
+</div>
+
 ### reflection
 pretty fun project over all and learned more the applications of affine transformations in computer vision.
+
 [back to project list](../index.md)
