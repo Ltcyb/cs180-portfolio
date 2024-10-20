@@ -14,7 +14,7 @@ In the first part of this project, I will be attempting to stich photos taken fr
 <table>
     <tr>
         <td>
-            <img src="../proj4/out/wallet.jpg" height=300>
+            <img src="../proj4/out/wallet.jpg" width=300>
         </td>
     </tr>
 </table>
@@ -25,7 +25,7 @@ In the first part of this project, I will be attempting to stich photos taken fr
 <table>
     <tr>
         <td>
-            <img src="../proj4/out/laptop.jpg" height=300>
+            <img src="../proj4/out/laptop.jpg" width=300>
         </td>
     </tr>
 </table>
@@ -37,10 +37,10 @@ In the first part of this project, I will be attempting to stich photos taken fr
 <table>
     <tr>
         <td>
-            <img src="../proj4/out/desk-0.jpg" height=300>
+            <img src="../proj4/out/desk-0.jpg" width=300>
         </td>
         <td>
-            <img src="../proj4/out/desk-1.jpg" height=300>
+            <img src="../proj4/out/desk-1.jpg" width=300>
         </td>
     </tr>
 </table>
@@ -52,10 +52,10 @@ In the first part of this project, I will be attempting to stich photos taken fr
 <table>
     <tr>
         <td>
-            <img src="../proj4/out/monitor-0.jpg" height=300>
+            <img src="../proj4/out/monitor-0.jpg" width=300>
         </td>
         <td>
-            <img src="../proj4/out/monitor-1.jpg" height=300>
+            <img src="../proj4/out/monitor-1.jpg" width=300>
         </td>
     </tr>
 </table>
@@ -66,13 +66,13 @@ In the first part of this project, I will be attempting to stich photos taken fr
 <table>
     <tr>
         <td>
-            <img src="../proj4/out/bed-0.jpg" height=300>
+            <img src="../proj4/out/bed-0.jpg" width=300>
         </td>
         <td>
-            <img src="../proj4/out/bed-1.jpg" height=300>
+            <img src="../proj4/out/bed-1.jpg" width=300>
         </td>
         <td>
-            <img src="../proj4/out/bed-2.jpg" height=300>
+            <img src="../proj4/out/bed-2.jpg" width=300>
         </td>
     </tr>
 </table>
@@ -83,13 +83,13 @@ In the first part of this project, I will be attempting to stich photos taken fr
 <table>
     <tr>
         <td>
-            <img src="../proj4/out/safeway-0.jpg" height=300>
+            <img src="../proj4/out/safeway-0.jpg" width=300>
         </td>
         <td>
-            <img src="../proj4/out/safeway-1.jpg" height=300>
+            <img src="../proj4/out/safeway-1.jpg" width=300>
         </td>
         <td>
-            <img src="../proj4/out/safeway-2.jpg" height=300>
+            <img src="../proj4/out/safeway-2.jpg" width=300>
         </td>
     </tr>
 </table>
@@ -118,11 +118,11 @@ To test the homography matrices, I first took some photos of rectangular objects
 <table>
     <tr>
         <td>
-            <img src="../proj4/out/laptop.jpg" height=300>
+            <img src="../proj4/out/laptop.jpg" width=300>
             <p align="middle">laptop</p>
         </td>
         <td>
-            <img src="../proj4/out/laptop-rect.jpg" height=300>
+            <img src="../proj4/out/laptop-rect.jpg" width=300>
             <p align="middle">laptop rectified</p>
         </td>
     </tr>
@@ -134,11 +134,11 @@ To test the homography matrices, I first took some photos of rectangular objects
 <table>
     <tr>
         <td>
-            <img src="../proj4/out/wallet.jpg" height=300>
+            <img src="../proj4/out/wallet.jpg" width=300>
             <p align="middle">wallet</p>
         </td>
         <td>
-            <img src="../proj4/out/wallet-rect.jpg" height=300>
+            <img src="../proj4/out/wallet-rect.jpg" width=300>
             <p align="middle">wallet rectified</p>
         </td>
     </tr>
@@ -159,11 +159,11 @@ My phone camera seems to ***auto adjust*** the lighting after taking a photo, an
 <table>
     <tr>
         <td>
-            <img src="../proj4/out/desk-0.jpg" height=300>
+            <img src="../proj4/out/desk-0.jpg" width=300>
             <p align="middle">left</p>
         </td>
         <td>
-            <img src="../proj4/out/desk-1.jpg" height=300>
+            <img src="../proj4/out/desk-1.jpg" width=300>
             <p align="middle">right</p>
         </td>
     </tr>
@@ -177,15 +177,15 @@ My phone camera seems to ***auto adjust*** the lighting after taking a photo, an
 <table>
     <tr>
         <td>
-            <img src="../proj4/out/desk-0.jpg" height=300>
+            <img src="../proj4/out/desk-0.jpg" width=300>
             <p align="middle">left</p>
         </td>
         <td>
-            <img src="../proj4/out/desk-1.jpg" height=300>
+            <img src="../proj4/out/desk-1.jpg" width=300>
             <p align="middle">middle</p>
         </td>
         <td>
-            <img src="../proj4/out/desk-2.jpg" height=300>
+            <img src="../proj4/out/desk-2.jpg" width=300>
             <p align="middle">right</p>
         </td>
     </tr>
@@ -202,11 +202,11 @@ My phone camera seems to ***auto adjust*** the lighting after taking a photo, an
 <table>
     <tr>
         <td>
-            <img src="../proj4/out/monitor-0.jpg" height=300>
+            <img src="../proj4/out/monitor-0.jpg" width=300>
             <p align="middle">left</p>
         </td>
         <td>
-            <img src="../proj4/out/monitor-1.jpg" height=300>
+            <img src="../proj4/out/monitor-1.jpg" width=300>
             <p align="middle">right</p>
         </td>
     </tr>
@@ -220,11 +220,11 @@ My phone camera seems to ***auto adjust*** the lighting after taking a photo, an
 <table>
     <tr>
         <td>
-            <img src="../proj4/out/bed-0.jpg" height=300>
+            <img src="../proj4/out/bed-0.jpg" width=300>
             <p align="middle">left</p>
         </td>
         <td>
-            <img src="../proj4/out/bed-1.jpg" height=300>
+            <img src="../proj4/out/bed-1.jpg" width=300>
             <p align="middle">right</p>
         </td>
     </tr>
@@ -237,15 +237,15 @@ My phone camera seems to ***auto adjust*** the lighting after taking a photo, an
 <table>
     <tr>
         <td>
-            <img src="../proj4/out/bed-2.jpg" height=300>
+            <img src="../proj4/out/bed-2.jpg" width=300>
             <p align="middle">left</p>
         </td>
         <td>
-            <img src="../proj4/out/bed-1.jpg" height=300>
+            <img src="../proj4/out/bed-1.jpg" width=300>
             <p align="middle">middle</p>
         </td>
         <td>
-            <img src="../proj4/out/bed-0.jpg" height=300>
+            <img src="../proj4/out/bed-0.jpg" width=300>
             <p align="middle">right</p>
         </td>
     </tr>
@@ -261,11 +261,11 @@ My phone camera seems to ***auto adjust*** the lighting after taking a photo, an
 <table>
     <tr>
         <td>
-            <img src="../proj4/out/safeway-0.jpg" height=300>
+            <img src="../proj4/out/safeway-0.jpg" width=300>
             <p align="middle">left</p>
         </td>
         <td>
-            <img src="../proj4/out/safeway-1.jpg" height=300>
+            <img src="../proj4/out/safeway-1.jpg" width=300>
             <p align="middle">right</p>
         </td>
     </tr>
@@ -278,15 +278,15 @@ My phone camera seems to ***auto adjust*** the lighting after taking a photo, an
 <table>
     <tr>
         <td>
-            <img src="../proj4/out/safeway-0.jpg" height=300>
+            <img src="../proj4/out/safeway-0.jpg" width=300>
             <p align="middle">left</p>
         </td>
         <td>
-            <img src="../proj4/out/safeway-1.jpg" height=300>
+            <img src="../proj4/out/safeway-1.jpg" width=300>
             <p align="middle">middle</p>
         </td>
         <td>
-            <img src="../proj4/out/safeway-2.jpg" height=300>
+            <img src="../proj4/out/safeway-2.jpg" width=300>
             <p align="middle">right</p>
         </td>
     </tr>
