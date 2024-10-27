@@ -360,6 +360,28 @@ To generate features at a particular point:
 
 > These feature descriptors are called "Multi-Scale Oriented Patches" (MOPS) as mentioned in the paper.
 
+<div align="middle">
+<table>
+    <tr>
+        <td>
+            <img src="../proj4/out/desk0-feature-desc-0.jpg" width=300>
+        </td>
+        <td>
+            <img src="../proj4/out/desk0-feature-desc-100.jpg" width=300>
+        </td>
+        <td>
+            <img src="../proj4/out/desk0-feature-desc-200.jpg" width=300>
+        </td>
+        <td>
+            <img src="../proj4/out/desk0-feature-desc-300.jpg" width=300>
+        </td>
+        <td>
+            <img src="../proj4/out/desk0-feature-desc-400.jpg" width=300>
+        </td>
+    </tr>
+</table>
+</div>
+
 ## Feature Matching
 In order to feature match, we need some kind of metric to determine how features match. To do this, I used `sum squared error` to determine the difference between one feature and another. The less error, the more similar the features are.
 
