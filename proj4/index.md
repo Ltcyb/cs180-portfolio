@@ -330,13 +330,9 @@ The Harris corner detetion detected around `18000` points in total on the ***dow
 
 There are too many points produced by the Harris corner detection algorithm. In order to filter the points, I used the adaptive non-maximal suppression (ANMS) algorithm. The basic idea is to remove keypoints that are not the strongest in their local neighborhood. To achieve this, we need some strength metric that can be measured between two points. This strength metric (or strength funciton `f` however you want to see it) can be obtain by creating a measure of how corner-like a point is from the Harris corner detection (this metric is produced while going thorugh Harris detection). Now that the strength metric is decided, we can move on to how the suppression works. We want each point to have a radius `r` that determines how far it is from its nearest neighbor. We want to minimize this distance such that the the strength metric of the current point `f(x)` is sufficiently suppressed by a neighboring point's strength metric under a threshold contraint `threshold * f(y)`. In order to find the best points, we want to find points with the largest `r`. For my specific use case, I just took the the top 500 points and set the `threshold = 0.9`.
 
-<div align="middle">
-
 ![](./out/anms.png)
 
 > Here's the minimization problem.
-
-</div>
 
 <div align="middle">
 <table>
@@ -420,7 +416,34 @@ In this case we can say that "most similar" can be anagolous to "nearest neigbor
 
 ## Random Sample Consensus (RANSAC)
 
+RANSAC is an iterative model to estimate parameters. Specifically for this case, we are trying to find the homography matrix that produces the most accurate predictions. Here are the steps I took when running RANSAC on the feature matched points to further pinpoint which points are needed.
 
+For `n = 1000` steps:
+
+1. Choose 4 random points from feature matched points pairs
+2. `computeHomography(pair1_points, pair2_points)`
+3. Calculate the predicted points using `p2' = H @ p1` (remember to normalize each point in `p2'` wrt to the its resulting constant)
+4. Add all `(p1, p2)` pairs to `inliers` list that satisfy the condition `dist(p2' - p2) < e` where `e` is the max error you are willing to allow. I set `e = 1` so the max difference is 1 pixel.
+5. If the current `inliers` list has more points than `best_inliers`, update `best_inliers`.
+
+Compute best estimated homography using least squares and `best_inliers` as input.
+
+<div align="middle">
+<table>
+    <tr>
+        <td>
+            <img src="../proj4/out/desk0-ransac-inliers.jpg" width=500>
+            <p align="middle">desk0.jpg</p>
+        </td>
+        <td>
+            <img src="../proj4/out/desk1-ransac-inliers.jpg" width=500>
+            <p align="middle">desk1.jpg</p>
+        </td>
+    </tr>
+</table>
+</div>
+
+> For this example, RANSAC reduced `73` feature match pairs into `47` correspondence pairs.
 
 ## Homography Estimation + Stitching
 I used the same stitching method as I did from Part A of this project. The only difference is that we're now using the homography matrix estimated from RANSAC and feature matching. I think the estimation did a pretty good job, but it seems to be slightly lacking compared to manually matching correspondence. But what can you expect, I think it did amazingly well for automatic homography estiamtion.
