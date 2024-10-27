@@ -416,7 +416,7 @@ In this case we can say that "most similar" can be anagolous to "nearest neigbor
 
 ## Random Sample Consensus (RANSAC)
 
-RANSAC is an iterative model to estimate parameters. Specifically for this case, we are trying to find the homography matrix that produces the most accurate predictions. Here are the steps I took when running RANSAC on the feature matched points to further pinpoint which points are needed.
+[RANSAC](https://en.wikipedia.org/wiki/Random_sample_consensus) is an iterative model to estimate parameters. Specifically for this case, we are trying to find the homography matrix that produces the most accurate predictions. Here are the steps I took when running RANSAC on the feature matched points to further pinpoint which points are needed.
 
 For `n = 1000` steps:
 
