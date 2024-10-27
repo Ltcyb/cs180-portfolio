@@ -5,3 +5,5 @@
 ### [proj3: face morphing and mean faces](./proj3/index.md)
 
 ### [proj4: [auto] image stitching and mosaics](./proj4/index.md)
+
+### [proj5: tbd](./proj5/index.md)
