@@ -16,9 +16,4 @@ plugins:
   - jekyll-seo-tag  # Optional SEO plugin
   - jekyll-feed     # Optional RSS feed plugin
 
-# Custom variables (optional)åœ
-mathjax: "true"
-
-# For enabling KaTeX or MathJax script inclusion
-extra:
-  mathjax_url: "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"
+usemathjax: true
