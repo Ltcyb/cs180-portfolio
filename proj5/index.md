@@ -36,7 +36,7 @@ $$
 We are using a noise generator (or estimation) using a standard normal distirbution $\epsilon$, which can be calculated via `torch.randn_like`, and an `alpha_cumprod` $\bar\alpha_t$ of $t$ step. As $t$ increases, so does the amount of noise added to the image increase.
 
 <center>
-    <table display=None width=auto>
+    <table>
         <tbody align=center>
             <tr>
                 <td>
@@ -66,7 +66,7 @@ After noise-ifying images, we can train a diffusion model to estimate denosising
 We will first try to implement a classical denoising method via Gaussian Blur Filtering. In particular, I used `torchvision.trnasforms.functional.gaussian_blur` with a kernel size of `(7, 7)` to implement the blurs on the noisy images. This will pass the noisy image through a low pass filter and therefore get rid of some of the low frequency noise. However, as seen by the results, the Gaussian Blur Filter doesn't get rid of all the noise and it also blurs the original image.
 
 <center>
-    <table display=None width=auto>
+    <table>
         <tr>
             <td>
                 <img src="../proj5/out/campanile-noisy-250.jpg" width=128 height=128>
@@ -85,7 +85,7 @@ We will first try to implement a classical denoising method via Gaussian Blur Fi
 </center>
 
 <center>
-<table display=None width=auto>
+<table>
     <tr>
         <td>
             <img src="../proj5/out/campanile-gaussian-denoised-250.jpg" width=128 height=128>
@@ -109,7 +109,7 @@ We can further improve the denoising by using a pretrained diffusion model to es
 In comparison to the Gaussian Blur Filter, this method of denoising gets rid of all the noise. However, the predicted image still tends to be blurred and loeses some of the structure and detailes that were in the original image.
 
 <center>
-<table display=None width=auto>
+<table>
     <tr>
         <td>
             <img src="../proj5/out/campanile-noisy-250.jpg" width=128 height=128>
@@ -128,7 +128,7 @@ In comparison to the Gaussian Blur Filter, this method of denoising gets rid of 
 </center>
 
 <center>
-<table display=None width=auto>
+<table>
     <tr>
         <td>
             <img src="../proj5/out/campanile-unet-denoised-250.jpg" width=128 height=128>
@@ -167,7 +167,7 @@ $$
 $x_0$ is the estimated clean image at each iterative step using the formula used in the forward process with noise $\epsilon$ being the estimated noise from UNet output.
 
 <center>
-<table display=None width=auto>
+<table>
     <tr>
         <td>
             <img src="../proj5/out/campanile-iterative-t-90.jpg" width=128 height=128>
@@ -194,7 +194,7 @@ $x_0$ is the estimated clean image at each iterative step using the formula used
 </center>
 
 <center>
-<table display=None width=auto>
+<table>
     <tr>
         <td>
             <img src="../proj5/out/campanile.jpg" width=128 height=128>
@@ -220,7 +220,7 @@ $x_0$ is the estimated clean image at each iterative step using the formula used
 We are going to generate images from scratch by starting the iterative denoising at $T$ timestep (the max timestep) and feeding the model a random noisy image generated via `torch.rand_like` and with the word embedding `"a high quailty photo"`. Here are some samples I genereated using iterative denoising.
 
 <center>
-<table display=None width=auto>
+<table>
     <tr>
         <td>
             <img src="../proj5/out/random-sample-0.jpg" width=128 height=128>
@@ -249,7 +249,7 @@ $$\epsilon = \epsilon_u + \gamma(\epsilon_c - \epsilon_u)$$
 For these images, I used `"a high quality photo"` for the UNet embedding that would estimate conditional noise and a null prompt of `""` as the unconditional noise. Furthermore, I used $\gamma=7$ when calculating the overall noise estimate.
 
 <center>
-<table display=None width=auto>
+<table>
     <tr>
         <td>
             <img src="../proj5/out/cfg-random-sample-0.jpg" width=128 height=128>
@@ -277,7 +277,7 @@ Instead of passing in a randomly generated image, we will pass in a noise-ified 
 
 ### campanile.jpg
 <center>
-<table display=None width=auto>
+<table>
     <tr>
         <td>
             <img src="../proj5/out/translate-campanile-1.jpg" width=128 height=128>
@@ -309,7 +309,7 @@ Instead of passing in a randomly generated image, we will pass in a noise-ified 
 
 ### nyc.jpg
 <center>
-<table display=None width=auto>
+<table>
     <tr>
         <td>
             <img src="../proj5/out/translate-nyc-1.jpg" width=128 height=128>
@@ -341,7 +341,7 @@ Instead of passing in a randomly generated image, we will pass in a noise-ified 
 
 ### sf.jpg
 <center>
-<table display=None width=auto>
+<table>
     <tr>
         <td>
             <img src="../proj5/out/translate-sf-1.jpg" width=128 height=128>
@@ -376,7 +376,7 @@ Let's see if CFG with DeepFloyd runs well on hand drawn images and images taken 
 
 ### web: jinx.jpg
 <center>
-<table display=None width=auto>
+<table>
     <tr>
         <td>
             <img src="../proj5/out/cfg-web-1.jpg" width=128 height=128>
@@ -412,7 +412,7 @@ Let's see if CFG with DeepFloyd runs well on hand drawn images and images taken 
 
 ### hand drawn: pikachu?
 <center>
-<table display=None width=auto>
+<table>
     <tr>
         <td>
             <img src="../proj5/out/hand-drawn-pikachu-1.jpg" width=128 height=128>
@@ -448,7 +448,7 @@ Let's see if CFG with DeepFloyd runs well on hand drawn images and images taken 
 
 ### hand drawn: ditto?
 <center>
-<table display=None width=auto>
+<table>
     <tr>
         <td>
             <img src="../proj5/out/hand-drawn-ditto-1.jpg" width=128 height=128>
@@ -491,7 +491,7 @@ $$
 
 ### campanile.jpg
 <center>
-<table display=None width=auto>
+<table>
     <tr>
         <td>
             <img src="../proj5/out/campanile.jpg" width=128 height=128>
@@ -514,7 +514,8 @@ $$
 </center>
 
 ### nyc
-<table style={}>
+<center>
+<table>
     <tr>
         <td>
             <img src="../proj5/out/nyc.jpg" width=128 height=128>
@@ -538,7 +539,7 @@ $$
 
 ### sh
 <center>
-<table display=None width=auto>
+<table>
     <tr>
         <td>
             <img src="../proj5/out/sh.jpeg" width=128 height=128>
@@ -565,7 +566,7 @@ We are going to run the image translation again, but we'll replace the generic e
 
 ### `"a rocket ship"` $\longrightarrow$ campanile.jpg
 <center>
-<table display=None width=auto>
+<table>
     <tr>
         <td>
             <img src="../proj5/out/text-translate-campanile-1.jpg" width=128 height=128>
@@ -601,7 +602,7 @@ We are going to run the image translation again, but we'll replace the generic e
 
 ### `"a lithograph of waterfalls"` $\longrightarrow$ nyc.jpg
 <center>
-<table display=None width=auto>
+<table>
     <tr>
         <td>
             <img src="../proj5/out/text-translate-nyc-1.jpg" width=128 height=128>
@@ -637,7 +638,7 @@ We are going to run the image translation again, but we'll replace the generic e
 
 ### `"an oil painting of a snowy mountain village"` $\longrightarrow$ sf.jpg
 <center>
-<table display=None width=auto>
+<table>
     <tr>
         <td>
             <img src="../proj5/out/text-translate-sf-1.jpg" width=128 height=128>
@@ -689,7 +690,7 @@ $$
 Here are some examples:
 
 <center>
-<table display=None width=auto>
+<table>
     <tr>
         <td>
             <img src="../proj5/out/visual-anagram-oldman.jpg" width=128 height=128>
@@ -704,7 +705,7 @@ Here are some examples:
 </center>
 
 <center>
-<table display=None width=auto>
+<table>
     <tr>
         <td>
             <img src="../proj5/out/visual-anagram-rocket.jpg" width=128 height=128>
@@ -720,7 +721,7 @@ Here are some examples:
 </center>
 
 <center>
-<table display=None width=auto>
+<table>
     <tr>
         <td>
             <img src="../proj5/out/visual-anagram-dog.jpg" width=128 height=128>
@@ -751,7 +752,7 @@ $$
 
 Here are some examples:
 <center>
-<table display=None width=auto>
+<table>
     <tr>
         <td>
             <img src="../proj5/out/hybrid-skull-waterfall.jpg" width=128 height=128>
