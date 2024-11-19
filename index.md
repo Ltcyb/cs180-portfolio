@@ -6,4 +6,6 @@
 
 ### [proj4: [auto] image stitching and mosaics](./proj4/index.md)
 
-### [proj5: tbd](./proj5/index.md)
+### [proj5: diffusion models](./proj5/index.md)
+
+### [proj6: tbd](./proj6/index.md)
