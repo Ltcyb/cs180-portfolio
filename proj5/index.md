@@ -35,28 +35,28 @@ $$
 
 We are using a noise generator (or estimation) using a standard normal distirbution $\epsilon$, which can be calculated via `torch.randn_like`, and an `alpha_cumprod` $\bar\alpha_t$ of $t$ step. As $t$ increases, so does the amount of noise added to the image increase.
 
-<center>
 <table>
-    <tr>
-        <td>
-            <img src="../proj5/out/campanile.jpg" width=128 height=128>
-            <p align=center>campanile.jpg</p>
-        </td>
-        <td>
-            <img src="../proj5/out/campanile-noisy-250.jpg" width=128 height=128>
-            <p align=center>t=250</p>
-        </td>
-        <td>
-            <img src="../proj5/out/campanile-noisy-500.jpg" width=128 height=128>
-            <p align=center>t=500</p>
-        </td>
-        <td>
-            <img src="../proj5/out/campanile-noisy-750.jpg" width=128 height=128>
-            <p align=center>t=750</p>
-        </td>
-    </tr>
+    <tbody align=center>
+        <tr>
+            <td>
+                <img src="../proj5/out/campanile.jpg" width=128 height=128>
+                <p align=center>campanile.jpg</p>
+            </td>
+            <td>
+                <img src="../proj5/out/campanile-noisy-250.jpg" width=128 height=128>
+                <p align=center>t=250</p>
+            </td>
+            <td>
+                <img src="../proj5/out/campanile-noisy-500.jpg" width=128 height=128>
+                <p align=center>t=500</p>
+            </td>
+            <td>
+                <img src="../proj5/out/campanile-noisy-750.jpg" width=128 height=128>
+                <p align=center>t=750</p>
+            </td>
+        </tr>
+    </tbody>
 </table>
-</center>
 
 ## 1.2 Classical Denoising
 After noise-ifying images, we can train a diffusion model to estimate denosising processes of these noisified image. That way the diffusion model can later "generate" images by converting random noisy images not on the real image manifold into images related to the input fed into the model.
@@ -512,8 +512,7 @@ $$
 </center>
 
 ### nyc
-<center>
-<table>
+<table style={}>
     <tr>
         <td>
             <img src="../proj5/out/nyc.jpg" width=128 height=128>
