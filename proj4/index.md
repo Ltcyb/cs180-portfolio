@@ -352,7 +352,7 @@ There are too many points produced by the Harris corner detection algorithm. In 
 ## Feature Descriptor Extraction
 Although we found a bunch of points, we can find points on two images, but still don't know which point corresponds to what point. In order to pinpoint correspondence, we will see if features match up. First, we gotta extract the feature at each point.
 
-To generate features at a particular point:
+To generate features at a *particular* point:
 1. Convert image to grayscale
 2. Create a `(40, 40)` window at the point
 3. Downsize the descriptor window to `(8, 8)`
