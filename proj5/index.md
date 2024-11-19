@@ -12,7 +12,7 @@ I used `SEED=501`.
 
 Here some of the ouput images after passing it through stage 1 and 2 UNets of the model. It appears that the number of iterative steps the model takes affects the output image pretty drastically even though the same word embedding was used.
 
-<div align=center>
+<center>
 
 <img src="../proj5/out/model-10-steps.png">
 <p>10 steps</p>
@@ -23,7 +23,8 @@ Here some of the ouput images after passing it through stage 1 and 2 UNets of th
 <img src="../proj5/out/model-40-steps.png">
 <p>40 steps</p>
 
-</div>
+</center>
+
 
 ## 1.1 Forward Function
 We need to implement a function that adds noise to an image. This is achieved with this formula:
@@ -34,9 +35,9 @@ $$
 
 We are using a noise generator (or estimation) using a standard normal distirbution $\epsilon$, which can be calculated via `torch.randn_like`, and an `alpha_cumprod` $\bar\alpha_t$ of $t$ step. As $t$ increases, so does the amount of noise added to the image increase.
 
-<div align=center>
+<center>
 <table>
-    <tr align=center>
+    <tr>
         <td>
             <img src="../proj5/out/campanile.jpg" width=128 height=128>
             <p align=center>campanile.jpg</p>
@@ -55,16 +56,16 @@ We are using a noise generator (or estimation) using a standard normal distirbut
         </td>
     </tr>
 </table>
-</div>
+</center>
 
 ## 1.2 Classical Denoising
 After noise-ifying images, we can train a diffusion model to estimate denosising processes of these noisified image. That way the diffusion model can later "generate" images by converting random noisy images not on the real image manifold into images related to the input fed into the model.
 
 We will first try to implement a classical denoising method via Gaussian Blur Filtering. In particular, I used `torchvision.trnasforms.functional.gaussian_blur` with a kernel size of `(7, 7)` to implement the blurs on the noisy images. This will pass the noisy image through a low pass filter and therefore get rid of some of the low frequency noise. However, as seen by the results, the Gaussian Blur Filter doesn't get rid of all the noise and it also blurs the original image.
 
-<div align=center>
+<center>
     <table>
-        <tr align=center>
+        <tr>
             <td>
                 <img src="../proj5/out/campanile-noisy-250.jpg" width=128 height=128>
                 <p align=center>t=250</p>
@@ -79,11 +80,11 @@ We will first try to implement a classical denoising method via Gaussian Blur Fi
             </td>
         </tr>
     </table>
-</div>
+</center>
 
-<div align=center>
+<center>
 <table>
-    <tr align=center>
+    <tr>
         <td>
             <img src="../proj5/out/campanile-gaussian-denoised-250.jpg" width=128 height=128>
             <p align=center>blur t=250</p>
@@ -98,16 +99,16 @@ We will first try to implement a classical denoising method via Gaussian Blur Fi
         </td>
     </tr>
 </table>
-</div>
+</center>
 
 ## 1.3 One Step Denoising
 We can further improve the denoising by using a pretrained diffusion model to estimate the noise in the new noisy image and then remove that estiamted noise from that same noisy image to get closer towards the original image. Since DeepFloyd was trained on text conditioning, we use the first stage UNet on the condition of `"a high quality photo"`.
 
 In comparison to the Gaussian Blur Filter, this method of denoising gets rid of all the noise. However, the predicted image still tends to be blurred and loeses some of the structure and detailes that were in the original image.
 
-<div align=center>
+<center>
 <table>
-    <tr align=center>
+    <tr>
         <td>
             <img src="../proj5/out/campanile-noisy-250.jpg" width=128 height=128>
             <p align=center>t=250</p>
@@ -122,11 +123,11 @@ In comparison to the Gaussian Blur Filter, this method of denoising gets rid of 
         </td>
     </tr>
 </table>
-</div>
+</center>
 
-<div align=center>
+<center>
 <table>
-    <tr align=center>
+    <tr>
         <td>
             <img src="../proj5/out/campanile-unet-denoised-250.jpg" width=128 height=128>
             <p align=center>one-step t=250</p>
@@ -141,7 +142,7 @@ In comparison to the Gaussian Blur Filter, this method of denoising gets rid of 
         </td>
     </tr>
 </table>
-</div>
+</center>
 
 ## 1.4 Iterative Denoising
 
@@ -163,9 +164,9 @@ $$
 
 $x_0$ is the estimated clean image at each iterative step using the formula used in the forward process with noise $\epsilon$ being the estimated noise from UNet output.
 
-<div align=center>
+<center>
 <table>
-    <tr align=center>
+    <tr>
         <td>
             <img src="../proj5/out/campanile-iterative-t-90.jpg" width=128 height=128>
             <p align=center>t=90</p>
@@ -188,11 +189,11 @@ $x_0$ is the estimated clean image at each iterative step using the formula used
         </td>
     </tr>
 </table>
-</div>
+</center>
 
-<div align=center>
+<center>
 <table>
-    <tr align=center>
+    <tr>
         <td>
             <img src="../proj5/out/campanile.jpg" width=128 height=128>
             <p align=center>campanile.jpg</p>
@@ -211,14 +212,14 @@ $x_0$ is the estimated clean image at each iterative step using the formula used
         </td>
     </tr>
 </table>
-</div>
+</center>
 
 ## 1.5 Diffusion Model Sampling
 We are going to generate images from scratch by starting the iterative denoising at $T$ timestep (the max timestep) and feeding the model a random noisy image generated via `torch.rand_like` and with the word embedding `"a high quailty photo"`. Here are some samples I genereated using iterative denoising.
 
-<div align=center>
+<center>
 <table>
-    <tr align=center>
+    <tr>
         <td>
             <img src="../proj5/out/random-sample-0.jpg" width=128 height=128>
         </td>
@@ -236,7 +237,7 @@ We are going to generate images from scratch by starting the iterative denoising
         </td>
     </tr>
 </table>
-</div>
+</center>
 
 ## 1.6 Classifier Free Guidance (CFG)
 Some of the images generated by iterative denoising seem really random or confusing. To fix this, we will use [Classifier Free Guidance](https://arxiv.org/abs/2207.12598), which uses an conditional and unconditional noise estimate the new noise.
@@ -245,9 +246,9 @@ $$\epsilon = \epsilon_u + \gamma(\epsilon_c - \epsilon_u)$$
 
 For these images, I used `"a high quality photo"` for the UNet embedding that would estimate conditional noise and a null prompt of `""` as the unconditional noise. Furthermore, I used $\gamma=7$ when calculating the overall noise estimate.
 
-<div align=center>
+<center>
 <table>
-    <tr align=center>
+    <tr>
         <td>
             <img src="../proj5/out/cfg-random-sample-0.jpg" width=128 height=128>
         </td>
@@ -265,7 +266,7 @@ For these images, I used `"a high quality photo"` for the UNet embedding that wo
         </td>
     </tr>
 </table>
-</div>
+</center>
 
 ## 1.7 Image to Image Translation
 Instead of passing in a randomly generated image, we will pass in a noise-ified image (using `forward(img, t)`) of the original image at different timesteps in order to get the diffusion model to output something similar to the original image we noise-ified.
@@ -273,9 +274,9 @@ Instead of passing in a randomly generated image, we will pass in a noise-ified 
 > **Side Note:** I used a `strided_timesteps` array that ranged from `[990, 0]` with a `stride=30`. When `i_start=0`, `t=990`, which the timestep at which `forward(img, t)` would return the noisiest version of the original image.
 
 ### campanile.jpg
-<div align=center>
+<center>
 <table>
-    <tr align=center>
+    <tr>
         <td>
             <img src="../proj5/out/translate-campanile-1.jpg" width=128 height=128>
             <p align=center>i_start=0</p>
@@ -302,12 +303,12 @@ Instead of passing in a randomly generated image, we will pass in a noise-ified 
         </td>
     </tr>
 </table>
-</div>
+</center>
 
 ### nyc.jpg
-<div align=center>
+<center>
 <table>
-    <tr align=center>
+    <tr>
         <td>
             <img src="../proj5/out/translate-nyc-1.jpg" width=128 height=128>
             <p align=center>i_start=0</p>
@@ -334,12 +335,12 @@ Instead of passing in a randomly generated image, we will pass in a noise-ified 
         </td>
     </tr>
 </table>
-</div>
+</center>
 
 ### sf.jpg
-<div align=center>
+<center>
 <table>
-    <tr align=center>
+    <tr>
         <td>
             <img src="../proj5/out/translate-sf-1.jpg" width=128 height=128>
             <p align=center>i_start=0</p>
@@ -366,15 +367,15 @@ Instead of passing in a randomly generated image, we will pass in a noise-ified 
         </td>
     </tr>
 </table>
-</div>
+</center>
 
 ## 1.7.1 Hand Drawn and Web Images
 Let's see if CFG with DeepFloyd runs well on hand drawn images and images taken from the web!
 
 ### web: jinx.jpg
-<div align=center>
+<center>
 <table>
-    <tr align=center>
+    <tr>
         <td>
             <img src="../proj5/out/cfg-web-1.jpg" width=128 height=128>
             <p align=center>i_start=0</p>
@@ -405,12 +406,12 @@ Let's see if CFG with DeepFloyd runs well on hand drawn images and images taken 
         </td>
     </tr>
 </table>
-</div>
+</center>
 
 ### hand drawn: pikachu?
-<div align=center>
+<center>
 <table>
-    <tr align=center>
+    <tr>
         <td>
             <img src="../proj5/out/hand-drawn-pikachu-1.jpg" width=128 height=128>
             <p align=center>i_start=0</p>
@@ -441,12 +442,12 @@ Let's see if CFG with DeepFloyd runs well on hand drawn images and images taken 
         </td>
     </tr>
 </table>
-</div>
+</center>
 
 ### hand drawn: ditto?
-<div align=center>
+<center>
 <table>
-    <tr align=center>
+    <tr>
         <td>
             <img src="../proj5/out/hand-drawn-ditto-1.jpg" width=128 height=128>
             <p align=center>i_start=0</p>
@@ -477,7 +478,7 @@ Let's see if CFG with DeepFloyd runs well on hand drawn images and images taken 
         </td>
     </tr>
 </table>
-</div>
+</center>
 
 ## 1.7.2 Inpainting
 We can use a mask and only pass in the mask portion through the forwarding process such that the diffusion model will only generate within the masked area.
@@ -487,9 +488,9 @@ x_t = \textbf{m} x_t + (1 - \textbf{m})\text{forward}(x_{orig}, t)
 $$
 
 ### campanile.jpg
-<div align=center>
+<center>
 <table>
-    <tr align=center>
+    <tr>
         <td>
             <img src="../proj5/out/campanile.jpg" width=128 height=128>
             <p align=center>campanile.jpg</p>
@@ -508,12 +509,12 @@ $$
         </td>
     </tr>
 </table>
-</div>
+</center>
 
 ### nyc
-<div align=center>
+<center>
 <table>
-    <tr align=center>
+    <tr>
         <td>
             <img src="../proj5/out/nyc.jpg" width=128 height=128>
             <p align=center>nyc.jpg</p>
@@ -532,12 +533,12 @@ $$
         </td>
     </tr>
 </table>
-</div>
+</center>
 
 ### sh
-<div align=center>
+<center>
 <table>
-    <tr align=center>
+    <tr>
         <td>
             <img src="../proj5/out/sh.jpeg" width=128 height=128>
             <p align=center>sh.jpg</p>
@@ -556,15 +557,15 @@ $$
         </td>
     </tr>
 </table>
-</div>
+</center>
 
 ## 1.7.3 Text Conditional Image to Image Translation
 We are going to run the image translation again, but we'll replace the generic embedding `"a high quality photo"` into a specific prompt. The generated models will look more like either the prompt or the original image passed into the model depending on how noisy the initial forwarding process is.
 
 ### `"a rocket ship"` $\longrightarrow$ campanile.jpg
-<div align=center>
+<center>
 <table>
-    <tr align=center>
+    <tr>
         <td>
             <img src="../proj5/out/text-translate-campanile-1.jpg" width=128 height=128>
             <p align=center>i_start=0</p>
@@ -595,12 +596,12 @@ We are going to run the image translation again, but we'll replace the generic e
         </td>
     </tr>
 </table>
-</div>
+</center>
 
 ### `"a lithograph of waterfalls"` $\longrightarrow$ nyc.jpg
-<div align=center>
+<center>
 <table>
-    <tr align=center>
+    <tr>
         <td>
             <img src="../proj5/out/text-translate-nyc-1.jpg" width=128 height=128>
             <p align=center>i_start=0</p>
@@ -631,12 +632,12 @@ We are going to run the image translation again, but we'll replace the generic e
         </td>
     </tr>
 </table>
-</div>
+</center>
 
 ### `"an oil painting of a snowy mountain village"` $\longrightarrow$ sf.jpg
-<div align=center>
+<center>
 <table>
-    <tr align=center>
+    <tr>
         <td>
             <img src="../proj5/out/text-translate-sf-1.jpg" width=128 height=128>
             <p align=center>i_start=0</p>
@@ -667,7 +668,7 @@ We are going to run the image translation again, but we'll replace the generic e
         </td>
     </tr>
 </table>
-</div>
+</center>
 
 ## 1.8 Visual Anagrams
 We can create optical illusions with diffusion models by using the [Visual Anagrams](https://dangeng.github.io/visual_anagrams/) algorithm presented by this paper. Basically, we take two images and generate their CFG noise and then combine the noise two noises. However, one of the images must be flipped and then flipped again to generate an optical illusion that can be seen when the image is flipped. For this project, I just flipped along the x-axis (index 2 of the tensor) using `torch.flip`.
@@ -686,9 +687,9 @@ $$
 
 Here are some examples:
 
-<div align=center>
+<center>
 <table>
-    <tr align=center>
+    <tr>
         <td>
             <img src="../proj5/out/visual-anagram-oldman.jpg" width=128 height=128>
             <p align=center>old man</p>
@@ -699,11 +700,11 @@ Here are some examples:
         </td>
     </tr>
 </table>
-</div>
+</center>
 
-<div align=center>
+<center>
 <table>
-    <tr align=center>
+    <tr>
         <td>
             <img src="../proj5/out/visual-anagram-rocket.jpg" width=128 height=128>
             <p align=center>rocket ship</p>
@@ -714,14 +715,12 @@ Here are some examples:
         </td>
     </tr>
 </table>
+<p align=center>you can see the village roofs</p>
+</center>
 
-> you can see the village roofs
-
-</div>
-
-<div align=center>
+<center>
 <table>
-    <tr align=center>
+    <tr>
         <td>
             <img src="../proj5/out/visual-anagram-dog.jpg" width=128 height=128>
             <p align=center>dog</p>
@@ -732,7 +731,7 @@ Here are some examples:
         </td>
     </tr>
 </table>
-</div>
+</center>
 
 ## 1.9 Hybrid Images
 We can also create hybrid images by calculating the CFG noise of the two images and then combining the low frequency of one image with the high frequency of another image as demonstrated with this paper on [Factorized Diffusion](https://arxiv.org/abs/2404.11615).
@@ -750,8 +749,9 @@ $$
 $$
 
 Here are some examples:
-<table align=center>
-    <tr align=center>
+<center>
+<table>
+    <tr>
         <td>
             <img src="../proj5/out/hybrid-skull-waterfall.jpg" width=128 height=128>
             <p align=center>skull + waterfall</p>
@@ -766,6 +766,7 @@ Here are some examples:
         </td>
     </tr>
 </table>
+</center>
 
 ### proj5a reflection
 I really enjoyed this project as it was my first time using a diffusion model. It was fun creating hybrid and anagram images. I learned a lot about how diffusion models work and hopefully I could do a deeper dive into diffusion models with 5b.
