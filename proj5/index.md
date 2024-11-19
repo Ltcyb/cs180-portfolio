@@ -2,7 +2,6 @@
 author: "Arnold Cai"
 date: "2024.11.18
 ---
-{% include mathjax_support.html %}
 
 # Proj5a: Power of Diffusion Models
 
