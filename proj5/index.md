@@ -6,6 +6,15 @@ date: "2024.11.18
 <!-- Support for MatJax -->
 <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script>
+    MathJax = {
+        tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+        }
+    };
+</script>
 
 # Proj5a: Power of Diffusion Models
 
@@ -33,9 +42,9 @@ Here some of the ouput images after passing it through stage 1 and 2 UNets of th
 ## 1.1 Forward Function
 We need to implement a function that adds noise to an image. This is achieved with this formula:
 
-```math
+$$
 x_t = \sqrt{\bar{\alpha}_t}x_0 + \sqrt{1 - \bar\alpha_t}\epsilon, \space where \space \epsilon \sim N(0, 1)
-```
+$$
 
 We are using a noise generator (or estimation) using a standard normal distirbution $\epsilon$, which can be calculated via `torch.randn_like`, and an `alpha_cumprod` $\bar\alpha_t$ of $t$ step. As $t$ increases, so does the amount of noise added to the image increase.
 
