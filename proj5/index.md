@@ -810,12 +810,10 @@ And here are some sample outputs of the model after the first and fifth epoch.
 
 <center>
 
-### After Epoch 1
-
+<h3>After Epoch 1</h3>
 <img src="../proj5/out/uncond-e0.jpg">
 
-### After Epoch 5
-
+<h3>After Epoch 5</h3>
 <img src="../proj5/out/uncond-e4.jpg">
 
 </center>
@@ -854,12 +852,10 @@ And here are some sample outputs by running the model on random noise after the 
 
 <center>
 
-### After Epoch 5
-
+<h3>After Epoch 5</h3>
 <img src="../proj5/out/time-cond-sample-epoch-4.jpg">
 
-### After Epoch 20
-
+<h3>After Epoch 20</h3>
 <img src="../proj5/out/time-cond-sample-epoch-19.jpg">
 
 </center>
@@ -882,12 +878,10 @@ Here are some sample outputs by running the model on random noise after the fift
 
 <center>
 
-### After Epoch 5
-
+<h3>After Epoch 5</h3>
 <img src="../proj5/out/class-cond-sample-epoch-4.jpg">
 
-### After Epoch 20
-
+<h3>After Epoch 20</h3>
 <img src="../proj5/out/class-cond-sample-epoch-19.jpg">
 
 </center>
