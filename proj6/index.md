@@ -20,6 +20,9 @@ date: "2024.12.13"
 
 Exploring stereo correspondence by recreating [NeRF](https://arxiv.org/pdf/2003.08934).
 
+<center>
+<img src="./out/lego-nerf-test.gif">
+</center>
 
 ## Part 1: 2D MLP
 Basically, for this model, it converts a `B x 2` batch of 2D coordinates and then converts it in to a `B x 3` batch of rgb values corresponding to those 2D coordinates. That way, I can generate a specifc image from a coordinate system of pixels (important for later). It first takes in the vector $X$. Then, pass it through a Sinusoidal Positional Encoding (SPE) to convert 2D coordinates into 3D coordinates. Then pass the 3D coordinates through a bunch of `256` sized Linear -> ReLU layers. Finally, at the end `3` sized Linear layer, pass the 3d coordinates through a Sigmoid Layer to predict a specific pixel coordinate's RGB value.
@@ -229,7 +232,7 @@ I created a `RaysDataset` class that contains all the pixel values and calculate
 
 When sampling, I flattened all coordinates of images in the image dataset into a 2D tensor and then used `torch.randint` to generate a list of random pixels to sample and rays to generate. I then returned a tuple containing `(batch, ...)` sized tensors of the origin rays `ray_o`, the direction rays `ray_d` and the pixel values of said coordinate `pixels`.
 
-> Also all data was normalized for easier computation. i.e. RGB / 255.0, $X / ||X||_2$
+> Also all data was normalized for easier computation. i.e. RGB / 255.0
 
 ### Sampling Plenoptic Points
 Now that we have sampled random camera origins and camera directions (corresponding to image pixels), we can now sample points along this ray to get points that are represented by the Plenoptic function. This function is crucial to implement and I had several bugs where the `(u, v)` coordinates didn't correspond with the rays, or where `(u, v)` was flipped to `(v, u)`.

@@ -8,4 +8,4 @@
 
 ### [proj5: diffusion models](./proj5/index.md)
 
-### [proj6: tbd](./proj6/index.md)
+### [proj6: neural radiance fields](./proj6/index.md)
