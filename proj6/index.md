@@ -375,6 +375,6 @@ This was done by modifying the volumetric perceptron function a bit. Instead of 
 
 ### proj6: reflection
 
-I learned a lot on how NeRF works through this project. It was fun yet tough to implement, but I did learn more about stereo correspondence and plenoptic functions.
+I learned a lot on how NeRF works through this project. It was fun yet tough to implement, but I did learn more about stereo correspondence and plenoptic functions. I think I can also increase my PSNR by changing my model architecture to be Tensored based rather than MLP according to this [paper](https://apchenstu.github.io/TensoRF/). I think it is pretty interesting and I probably look into other different architectures and methods to increase PSNR.
 
 [back to project list](../index.md)
